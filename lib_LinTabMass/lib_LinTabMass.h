@@ -3,117 +3,91 @@
 #include "../lib_TableInterface/lib_TableInterface.h"
 
 
+
 class Data
 {
 private:
-	std::string* names;
-	polinom* polinoms;
-	int maxsize;
-	int size = 0;
+	std::string name;
+	polinom pol;
+
 public:
-	Data() {
-		names = new std::string[5];
-		polinoms = new polinom[5];
-		maxsize = 5;
-		size = 0;
+	void Init(std::string name1, polinom pol1) {
+		name = name1;
+		pol = pol1;
 	}
 
-	void SetMass(int ind, std::string name, polinom pol) {
-		names[ind] = name;
-		polinoms[ind] = pol;
+	Data& operator= (const Data& right) {
+		this->name = right.name;
+		this->pol = right.pol;
 	}
 
-	std::string getName(int ind) {
-		return names[ind];
-	}
-
-	polinom getPol(int ind) {
-		return polinoms[ind];
-	}
-
-	void add(std::string name1, polinom pol) {
-		if (size == maxsize) massResize();
-		names[size] = name1;
-		polinoms[size] = pol;
-		size++;
-	}
-
-	void destroyPol(int pos) {
-		if (size == 0) throw std::logic_error("beda");
-		else
-		{
-			for (int i = pos; i < size; i++) {
-				names[i] = names[i + 1];
-				polinoms[i] = polinoms[i + 1];
-			}
-			size--;
-		}
-	}
-
-	polinom find(std::string findName) {
-		for (int i = 0; i < size; i++) {
-			if (findName == names[i]) return polinoms[i];
-		}
-		polinom null;
-		return null;
-	}
-
-	void massResize() {
-		std::string* namesCopy = new std::string[maxsize];
-		polinom* polinomsCopy = new polinom[maxsize];
-		maxsize += 3;
-		for (int i = 0; i < size; i++) {
-			namesCopy[i] = names[i];
-			polinomsCopy[i] = polinoms[i];
-		}
-		names = new std::string[maxsize];
-		polinoms = new polinom[maxsize];
-		for (int i = 0; i < size; i++) {
-			names[i] = namesCopy[i];
-			polinoms[i] = polinomsCopy[i];
-		}
-	}
-
-	void findAndReplace(std::string findName, polinom pol) {
-		bool flag = true;
-		for (int i = 0; i < size; i++) {
-			if (findName == names[i]) {
-				polinoms[i] = pol;
-				flag = false;
-			}
-		}
-		if (flag) throw std::logic_error("Error! Net polinoma s takim imenem");
-	}
-
-	~Data() {
-		delete[] names;
-		delete[] polinoms;
-	}
+	std::string getName() { return name; }
+	polinom getPolinom() { return pol; }
+	void setPolinom(polinom newPol) { pol = newPol; }
 };
 
 
 class LinTabMass : public Table
 {
 protected:
-	Data dates;
+	Data* dates;
 	int size;
+	int maxsize;
+
 public:
-	LinTabMass() {}
+	LinTabMass() {
+		dates = new Data[5];
+		maxsize = 5;
+		size = 0;
+	}
 
 	void add(std::string name1, polinom pol) {
-		dates.add(name1, pol);
+		if (size == maxsize) massResize();
+		dates[size].Init(name1, pol);
+		size++;
 	}
-		void destroyPol(int pos) override {
-		dates.destroyPol(pos);
+
+	void destroyPol(int pos) override {
+		if (size == 0) throw std::logic_error("beda");
+		else
+		{
+			for (int i = pos; i < size; i++) {
+				dates[i] = dates[i + 1];
+			}
+			size--;
+		}
 	}
 
 	polinom find(std::string findName) override {
-		dates.find(findName);
+		for (int i = 0; i < size; i++) {
+			if (findName == dates[i].getName()) return dates[i].getPolinom();
+		}
+		polinom null;
+		return null;
 	}
 
 	void findAndReplace(std::string findName, polinom pol) override {
-		dates.findAndReplace(findName, pol);
+		bool flag = true;
+		for (int i = 0; i < size; i++) {
+			if (findName == dates[i].getName()) {
+				dates[i].setPolinom(pol);
+				flag = false;
+			}
+		}
+		if (flag) throw std::logic_error("Error! Net polinoma s takim imenem");
 	}
 
-	~LinTabMass() {}
+	void massResize() {
+		Data* newData = new Data[maxsize];
+		maxsize += 3;
+		for (int i = 0; i < size; i++) {
+			newData[i] = dates[i];
+		}
+		dates = new Data[maxsize];
+		for (int i = 0; i < size; i++) {
+			dates[i] = newData[i];
+		}
+	}
+
+	~LinTabMass() { delete[] dates; }
 };
