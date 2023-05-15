@@ -3,6 +3,7 @@
 #include <iostream>
 #include "../lib_TableInterface/lib_TableInterface.h"
 
+
 class DataHashTable
 {
 private:
@@ -13,7 +14,6 @@ private:
 
 public:
 	DataHashTable() {
-		name = nullptr;
 		next = nullptr;
 		last = nullptr;
 	}
@@ -37,7 +37,7 @@ public:
 class HashTableList : public Table
 {
 private:
-	std::pair <bool, DataHashTable>* dates;
+	std::pair <bool, Clist<DataHashTable>>* dates;
 	const int size = 10;
 
 	int HashFunk(std::string name1) {
@@ -50,7 +50,7 @@ private:
 
 public:
 	HashTableList() {
-		dates = new std::pair <bool, DataHashTable>[size];
+		dates = new std::pair <bool, Clist<DataHashTable>>[size];
 		for (int i = 0; i < size; i++) {
 			dates->first = true;
 		}
@@ -62,72 +62,45 @@ public:
 
 	void add(std::string name1, polinom pol1) override {
 		int ind = HashFunk(name1);
-		if (dates[ind].first) {
-			dates[ind].second.name = name1;
-			dates[ind].second.pol = pol1;
-			dates[ind].second.last = dates[ind].second.getThis();
-		}
-		else {
-			DataHashTable* NewData = new DataHashTable(name1, pol1);
-			dates[ind].second.last->next = NewData;
-			dates[ind].second.last = NewData;
-			NewData->last = NewData->getThis();
-		}
+		DataHashTable newData(name1, pol1);
+		dates[ind].second.push_back(newData);
 	}
 
 	void destroyPol(std::string DestroyName)override {
 		int ind = HashFunk(DestroyName);
-		if (dates[ind].first) return;
-		DataHashTable* cur = dates[ind].second.getThis();
-		if (dates[ind].second.name == DestroyName) {
-			dates[ind].second.name = dates[ind].second.next->name;
-			dates[ind].second.pol = dates[ind].second.next->pol;
-			dates[ind].second.next = dates[ind].second.next->next;
-			dates[ind].second.last = dates[ind].second.next->last;
-		}
-		else {
-			while (cur->next != dates[ind].second.last || cur->next->name != DestroyName) {
-				cur = cur->next;
-			}
-			if (cur->next == dates[ind].second.last) {
-				if (cur->next->name == DestroyName) {
-					cur->next = nullptr;
-					dates[ind].second.last = cur;
-				}
-				else return;
-			}
-			else {
-				cur->next = cur->next->next;
+		if (dates[ind].second.size() == 0) throw std::logic_error("Polinoma s takim imenem net");
+		for (int i = 0; i < dates[ind].second.size(); i++) {
+			if (DestroyName == dates[ind].second.GetIndEl(i).name)
+			{
+				dates[ind].second.erasePos(i);
+				return;
 			}
 		}
+		throw std::logic_error("Polinoma s takim imenem net");
 	}
 
 	polinom find(std::string findName) override {
-		polinom Empty;
 		int ind = HashFunk(findName);
-		if (dates[ind].first) throw std::logic_error("Polinoma s takim imenem net");
-		DataHashTable* cur = dates[ind].second.getThis();
-		while (cur != cur->last) {
-			if (cur->name == findName) return cur->pol;
-			cur = cur->next;
+		if (dates[ind].second.size() == 0) throw std::logic_error("Polinoma s takim imenem net");
+		for (int i = 0; i < dates[ind].second.size(); i++) {
+			if (dates[ind].second.GetIndEl(i).name == findName)
+			{
+				return dates[ind].second.GetIndEl(i).pol;
+			}
 		}
-		if (cur->name == findName) return cur->pol;
-		else throw std::logic_error("Polinoma s takim imenem net");
+		throw std::logic_error("Polinoma s takim imenem net");
 	}
 
 	void findAndReplace(std::string findName, polinom pol1) override {
 		int ind = HashFunk(findName);
-		if (dates[ind].first) throw std::logic_error("Polinoma s takim imenem net");
-		DataHashTable* cur = dates[ind].second.getThis();
-		while (cur != cur->last) {
-			if (cur->name == findName)
+		if (dates[ind].second.size() == 0) throw std::logic_error("Polinoma s takim imenem net");
+		for (int i = 0; i < dates[ind].second.size(); i++) {
+			if (dates[ind].second.GetIndEl(i).name == findName)
 			{
-				cur->pol = pol1;
+				dates[ind].second.GetIndEl(i).pol = pol1;
 				return;
 			}
-			cur = cur->next;
 		}
-		if (cur->name == findName) cur->pol = pol1;
-		else  throw std::logic_error("Polinoma s takim imenem net");
+		throw std::logic_error("Polinoma s takim imenem net");
 	}
 };
