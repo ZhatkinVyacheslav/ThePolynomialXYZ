@@ -10,7 +10,7 @@ protected:
 	float coef;
 	int degreeX, degreeY, degreeZ;
 public:
-	monom(float coef1, int degreeX1, int degreeY1, int degreeZ1) 
+	monom(float coef1, int degreeX1, int degreeY1, int degreeZ1)
 	{
 		coef = coef1;
 		degreeX = degreeX1;
@@ -18,7 +18,7 @@ public:
 		degreeZ = degreeZ1;
 	}
 
-	monom() 
+	monom()
 	{
 		coef = 0;
 		degreeX = 0;
@@ -26,24 +26,22 @@ public:
 		degreeZ = 0;
 	}
 
-	bool equaldegrees(monom mon) 
+	bool equaldegrees(monom mon)
 	{
 		return (this->degreeX == mon.degreeX && this->degreeY == mon.degreeY && this->degreeZ == mon.degreeZ);
 	}
 
-	std::string print_monom() 
+	std::string print_monom()
 	{
 
-		
+
 		std::string res = std::to_string(coef) + " x^" + std::to_string(degreeX) + " y^" + std::to_string(degreeY) + " z^" + std::to_string(degreeZ);
 
 		return res;
-		
+
 	};
 
-	int get_coef() { return coef; }
-
-	void set_degreeX(int _degreeX) 
+	void set_degreeX(int _degreeX)
 	{
 		degreeX = _degreeX;
 	}
@@ -58,9 +56,42 @@ public:
 		degreeZ = _degreeZ;
 	}
 
-	void set_coef(float _coef) 
+	void set_coef(float _coef)
 	{
 		coef = _coef;
+	}
+
+	monom derivative_mon_X()
+	{
+		monom res = *this;
+
+		res.coef = this->coef * this->degreeX;
+
+		res.degreeX = this->degreeX - 1;
+
+		return res;
+	}
+
+	monom derivative_mon_Y()
+	{
+		monom res = *this;
+
+		res.coef = this->coef * this->degreeY;
+
+		res.degreeY = this->degreeY - 1;
+
+		return res;
+	}
+
+	monom derivative_mon_Z()
+	{
+		monom res = *this;
+
+		res.coef = this->coef * this->degreeZ;
+
+		res.degreeZ = this->degreeZ - 1;
+
+		return res;
 	}
 
 	float CalculatePointMonom(int x, int y, int z)
@@ -75,24 +106,24 @@ public:
 	monom& operator+(const monom& right)
 	{
 		monom m;
-		
-			m.coef = this->coef + right.coef;
-			m.degreeX = this->degreeX;
-			m.degreeY = this->degreeY;
-			m.degreeZ = this->degreeZ;
 
-			return m;
-				
+		m.coef = this->coef + right.coef;
+		m.degreeX = this->degreeX;
+		m.degreeY = this->degreeY;
+		m.degreeZ = this->degreeZ;
+
+		return m;
+
 	};
-	monom& operator-(const monom& right) 
+	monom& operator-(const monom& right)
 	{
 		monom m;
-		
+
 		m.coef = this->coef - right.coef;
 		m.degreeX = this->degreeX;
 		m.degreeY = this->degreeY;
 		m.degreeZ = this->degreeZ;
-		
+
 		return m;
 	};
 	monom& operator*(const monom& right)
@@ -106,7 +137,7 @@ public:
 
 		return m;
 	};
-	monom& operator*(const int right) 
+	monom& operator*(const int right)
 	{
 		monom m;
 
@@ -127,17 +158,25 @@ public:
 
 		return *this;
 	};
-	
-	bool operator==(const monom& right) {
+
+	bool operator==(const monom& right1) 
+	{
+		monom right = right1;
 		return(this->coef == right.coef
 			&& this->degreeX == right.degreeX
 			&& this->degreeY == right.degreeY
 			&& this->degreeZ == right.degreeZ);
 	}
+
+	bool operator!=(const monom& right1) {
+		monom right = right1;
+		return !(*this == right);
+	}
+
 	friend class polinom;
 
 	~monom() {
-		
+
 	}
 };
 
@@ -148,35 +187,68 @@ protected:
 	Clist<monom> Lmons;
 
 public:
-	polinom() 
+	polinom()
 	{
 
 	}
 
-	/*polinom(std::string _pol) 
+	polinom(std::string _pol)
 	{
 		monom m;
 
-		if ()
+		int k = 0;
+		if (_pol[0] != '-')
 		{
-
+			m.coef = (int)(_pol[0] - 48);
 		}
-	}*/
+		else
+		{
+			m.coef = (int)(_pol[1] - 48);
+			k = 1;
+		}
 
 
-	float CalculatePointPolinom(int x, int y, int z) 
+		for (int i = k; i < _pol.size(); i++)
+		{
+			if (_pol[i] == 'x' && _pol[i + 1] == '^')
+			{
+				m.degreeX = (int)(_pol[i + 2] - 48);
+				i = i + 2;
+			}
+			else
+			{
+				if (_pol[i] == 'y' && _pol[i + 1] == '^')
+				{
+					m.degreeY = (int)(_pol[i + 2] - 48);
+					i = i + 2;
+				}
+				else
+				{
+					if (_pol[i] == 'z' && _pol[i + 1] == '^')
+					{
+						m.degreeZ = (int)(_pol[i + 2] - 48);
+						i = i + 2;
+					}
+				}
+			}
+		}
+		add_monom(m);
+	}
+
+
+	float CalculatePointPolinom(int x, int y, int z)
 	{
 		float result = 0;
 
 		for (int i = 0; i < Lmons.size(); i++)
 		{
-			result += Lmons.GetIndEl(i).CalculatePointMonom(x,y,z);
+			result += Lmons.GetIndEl(i).CalculatePointMonom(x, y, z);
 		}
 
 		return result;
-	}
+	};
 
-	void add_monom(monom m) 
+	void add_monom(monom m)
 	{
 		this->Lmons.push_back(m);
 	}
@@ -184,24 +256,19 @@ public:
 	polinom derivative(int mode)
 	{
 
-		polinom res = *this;
+		polinom pol = *this;
 
 		switch (mode)
 		{
-			
-		case 1: 
-		{
-			
 
-			float _coef = 0;
-			int _degree = 0;
+		case 1:
+		{
+
+			polinom res;
+
 			for (size_t i = 0; i < this->Lmons.size(); i++)
 			{
-				_coef = this->Lmons.GetIndEl(i).coef * this->Lmons.GetIndEl(i).degreeX;
-				res.Lmons.GetIndEl(i).set_coef(_coef);
-				_degree = this->Lmons.GetIndEl(i).degreeX - 1;
-				res.Lmons.GetIndEl(i).set_degreeX(_degree);
-                
+				res.Lmons.push_back(pol.Lmons.GetIndEl(i).derivative_mon_X());
 			}
 
 			return res;
@@ -211,121 +278,97 @@ public:
 		case 2:
 		{
 			polinom res;
-			float _coef = 0;
-			int _degree = 0;
+
 			for (size_t i = 0; i < this->Lmons.size(); i++)
 			{
-				_coef = this->Lmons.GetIndEl(i).coef * this->Lmons.GetIndEl(i).degreeY;
-				res.Lmons.GetIndEl(i).set_coef(_coef);
-				_degree = this->Lmons.GetIndEl(i).degreeY - 1;
-				res.Lmons.GetIndEl(i).set_degreeX(_degree);
-
+				res.Lmons.push_back(pol.Lmons.GetIndEl(i).derivative_mon_Y());
 			}
 
 			return res;
-			break;			
+			break;
 		}
 
 		case 3:
 		{
 			polinom res;
-			float _coef = 0;
-			int _degree = 0;
+
 			for (size_t i = 0; i < this->Lmons.size(); i++)
 			{
-				_coef = this->Lmons.GetIndEl(i).coef * this->Lmons.GetIndEl(i).degreeZ;
-				res.Lmons.GetIndEl(i).set_coef(_coef);
-				_degree = this->Lmons.GetIndEl(i).degreeZ - 1;
-				res.Lmons.GetIndEl(i).set_degreeX(_degree);
-
+				res.Lmons.push_back(pol.Lmons.GetIndEl(i).derivative_mon_Z());
 			}
 
 			return res;
 			break;
 		}
-		default: 		
+		default:
 		{
-						
+			throw std::logic_error("Invalid data!");
 		}
-			break;
+		break;
 		}
-	}
-	
-	polinom& operator=(const polinom& right) {
-		polinom pol = right;
-		int size = 0;
-		if (this->Lmons.size() < pol.Lmons.size()) size = this->Lmons.size();
-		else size = pol.Lmons.size();
-		for (int i = 0; i < size; i++) {
-			this->Lmons.GetIndEl(i) = pol.Lmons.GetIndEl(i);
-		}
-		return *this;
-	}
+	};
 
 	polinom& operator+(const polinom& right)
 	{
-		polinom pol = right;
-		polinom res = *this;
+		polinom rig = right;
+		polinom res;
 
-		for (int i = 0; i < pol.Lmons.size(); i++)
+		for (int i = 0; i < rig.Lmons.size(); i++)
 		{
 			bool flag = false;
 			for (int j = 0; j < this->Lmons.size(); j++)
 			{
-				if (this->Lmons.GetIndEl(i).equaldegrees(pol.Lmons.GetIndEl(j)))
+				if (this->Lmons.GetIndEl(j).equaldegrees(rig.Lmons.GetIndEl(i)))
 				{
-					res.Lmons.GetIndEl(j) = this->Lmons.GetIndEl(i) + pol.Lmons.GetIndEl(j);
+					res.Lmons.push_back(this->Lmons.GetIndEl(j) + rig.Lmons.GetIndEl(i));
 					flag = true;
 				}
 			}
 			if (!flag)
 			{
-				res.Lmons.push_back(pol.Lmons.GetIndEl(i));
+				res.Lmons.push_back(rig.Lmons.GetIndEl(i));
 			}
 		}
 
 		return res;
-	}
-
-	polinom& operator-(const polinom& right) 
+	};
+	polinom& operator-(const polinom& right)
 	{
-		polinom pol = right;
-		polinom res = *this;
+		polinom rig = right;
+		polinom res;
 
-		for (int i = 0; i < pol.Lmons.size(); i++)
+		for (int i = 0; i < rig.Lmons.size(); i++)
 		{
 			bool flag = false;
 			for (int j = 0; j < this->Lmons.size(); j++)
 			{
-				if (this->Lmons.GetIndEl(i).equaldegrees(pol.Lmons.GetIndEl(j)))
+				if (this->Lmons.GetIndEl(j).equaldegrees(rig.Lmons.GetIndEl(i)))
 				{
-					res.Lmons.GetIndEl(j) = this->Lmons.GetIndEl(i) - pol.Lmons.GetIndEl(j);
+					res.Lmons.push_back(this->Lmons.GetIndEl(j) - rig.Lmons.GetIndEl(i));
 					flag = true;
 				}
 			}
 			if (!flag)
 			{
-				pol.Lmons.GetIndEl(i).set_coef(pol.Lmons.GetIndEl(i).coef * -1);
-				res.Lmons.push_back(pol.Lmons.GetIndEl(i));
+				rig.Lmons.GetIndEl(i).set_coef(rig.Lmons.GetIndEl(i).coef * -1);
+				res.Lmons.push_back(rig.Lmons.GetIndEl(i));
 			}
 		}
 
 		return res;
-	}
-
-	polinom& operator*(const int right) 
+	};
+	polinom& operator*(const int right)
 	{
-		polinom _res = *this;
+		polinom _res;
 
 		for (int i = 0; i < this->Lmons.size(); i++)
 		{
-			_res.Lmons.GetIndEl(i) = this->Lmons.GetIndEl(i) * right;
+			_res.Lmons.push_back(this->Lmons.GetIndEl(i) * right);
 		}
 
 		return _res;
-	}
-
-	polinom& operator*(const polinom& right) 
+	};
+	polinom& operator*(const polinom& right)
 	{
 		monom res;
 		polinom _res;
@@ -335,25 +378,22 @@ public:
 		{
 			for (int j = 0; j < pol.Lmons.size(); j++)
 			{
-				 res = this->Lmons.GetIndEl(i) * pol.Lmons.GetIndEl(j);
+				_res.Lmons.push_back(this->Lmons.GetIndEl(i) * pol.Lmons.GetIndEl(j));
 			}
-
-			_res.Lmons.push_back(res);
 		}
 		return _res;
-	}
+	};
 
-	bool operator== (const polinom& right)
-	{
+	bool operator==(const polinom& right) {
 		polinom pol = right;
 		if (this->Lmons.size() != pol.Lmons.size()) return false;
-		for (int i; i < this->Lmons.size(); i++) {
-			if (!(this->Lmons.GetIndEl(i) == pol.Lmons.GetIndEl(i))) return false;
+		for (int i = 0; i < this->Lmons.size(); i++) {
+			if( this->Lmons.GetIndEl(i) != pol.Lmons.GetIndEl(i)) return false;
 		}
 		return true;
 	}
 
-	std::string print_polinom() 
+	std::string print_polinom()
 	{
 
 		std::string res = this->Lmons.GetIndEl(0).print_monom();
@@ -373,10 +413,9 @@ public:
 		return res;
 	}
 
-	int get_First_coef() { return Lmons.GetIndEl(0).coef; }
-
 	~polinom() {
 		Lmons.clear();
 	}
 
 };
+
