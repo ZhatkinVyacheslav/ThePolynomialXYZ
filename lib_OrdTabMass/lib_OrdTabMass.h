@@ -13,9 +13,7 @@ public:
 		name = name1;
 		pol = pol1;
 	}
-	DataOrdTab() {
-		name = nullptr;
-	}
+	DataOrdTab() {}
 
 	friend class OrdTabMass;
 
@@ -37,30 +35,42 @@ public:
 		size = 0;
 		maxsize = 5;
 		dates = new DataOrdTab[maxsize];
+		for (int i = 0; i < maxsize; i++) {
+			dates[i].name = "";
+		}
 	}
 
 	void add(std::string name1, polinom pol1) override {
 		DataOrdTab newDate(name1, pol1);
 		bool flag = true;
-		for (int i = 0; i < size; i++) {
-			if ((int)name1[0] < (int)dates->name[0] && flag) {
-				for (int j = size + 1; j > i; j--) {
-					dates[j] = dates[j - 1];
+		if (size == 0)  dates[0] = newDate;
+		else {
+			for (int i = 0; i < size; i++) {
+				if (dates[i].name == "" && flag)
+				{
+					dates[i] = newDate;
+					flag = false;
 				}
-				dates[i] = newDate;
-				size++;
-				flag = false;
+				if (((int)name1[0] < (int)dates->name[0]) && flag) {
+					for (int j = size + 1; j > i; j--) {
+						dates[j] = dates[j - 1];
+					}
+					dates[i] = newDate;
+					flag = false;
+				} 
 			}
 		}
+		size++;
 		if (size == maxsize) {
 			massResize();
 		}
 	}
 
 	void destroyPol(std::string DestroyName)override {
+		if (size == 0) throw std::logic_error("beda");
 		for(int i = 0; i < size; i++) {
 			if (dates[i].name == DestroyName) {
-				for (int j = i; j > size; j++) {
+				for (int j = i; j < size; j++) {
 					dates[j] = dates[j + 1];
 				}
 				size--;
