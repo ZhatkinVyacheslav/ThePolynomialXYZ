@@ -9,20 +9,16 @@ class DataHashTable
 private:
 	std::string name;
 	polinom pol;
-	DataHashTable* next;
-	DataHashTable* last;
 
 public:
 	DataHashTable() {
-		next = nullptr;
-		last = nullptr;
+
 	}
 
 	DataHashTable(std::string name1, polinom pol1) {
 		name = name1;
 		pol = pol1;
-		next = nullptr; 
-		last = nullptr;
+
 	}
 
 	DataHashTable* getThis(){
@@ -67,6 +63,7 @@ public:
 	}
 
 	void destroyPol(std::string DestroyName)override {
+		if(isEmpty()) std::logic_error("Polinoma s takim imenem net");
 		int ind = HashFunk(DestroyName);
 		if (dates[ind].second.size() == 0) throw std::logic_error("Polinoma s takim imenem net");
 		for (int i = 0; i < dates[ind].second.size(); i++) {
@@ -102,5 +99,14 @@ public:
 			}
 		}
 		throw std::logic_error("Polinoma s takim imenem net");
+	}
+
+	bool isEmpty() {
+		for (int i = 0; i < 10; i++) {
+			if (!dates[i].first) {
+				return false;
+			}
+		}
+		return true;
 	}
 };
