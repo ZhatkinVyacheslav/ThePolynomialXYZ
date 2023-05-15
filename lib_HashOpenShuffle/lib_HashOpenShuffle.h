@@ -119,6 +119,8 @@ public:
 		{
 			if (p1[b].second.name != findName) {
 				b = (b + 7) % 25;
+			}
+			else {
 				p1[b].second.pol = _pol;
 				return;
 			}
