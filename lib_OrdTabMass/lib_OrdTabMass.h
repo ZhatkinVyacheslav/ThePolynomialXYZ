@@ -81,6 +81,7 @@ public:
 	}
 
 	polinom find(std::string findName) override {
+		if (size == 0) throw std::logic_error("Polinoma s takim imenem net");
 		for (int i = 0; i < size; i++) {
 			if (findName == dates[i].name) return dates[i].pol;
 		}
@@ -88,6 +89,7 @@ public:
 	}
 
 	void findAndReplace(std::string findName, polinom pol1) override {
+		if (size == 0) throw std::logic_error("Polinoma s takim imenem net");
 		for (int i = 0; i < size; i++) {
 			if (findName == dates[i].name)
 			{
