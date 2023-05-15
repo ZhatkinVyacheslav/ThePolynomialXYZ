@@ -10,6 +10,11 @@ class CNode
 	CNode<Type>* next;
 
 public:
+
+	CNode() {
+		next = nullptr;
+	}
+
 	CNode(Type val)
 	{
 		data = val;
@@ -103,8 +108,8 @@ public:
 		}
 	}
 
-	void erase(CNode<Type>* pos) {
-		if (pos < 0) throw std::logic_error("Pos < 0");	
+	void eraseCNode(CNode<Type>* pos) {
+		if (pos->get_data() < 0) throw std::logic_error("Pos < 0");	
 		if (isEmpty()) throw std::logic_error("beda");
 
 		if (pos != head)
@@ -125,6 +130,42 @@ public:
 		{
 			this->pop_front();
 		}
+	}
+
+	void erasePos(int pos) {
+		if (pos < 0) throw std::logic_error("Pos < 0");
+		if (isEmpty()) throw std::logic_error("beda");
+
+		if (pos != 0)
+		{
+			CNode<Type>* copy = head;
+			CNode<Type>* DeletedNode = head->get_next();
+			int i = 1;
+			while (i != pos)
+			{
+				i++;
+				copy = copy->get_next();
+				DeletedNode = DeletedNode->get_next();
+			}
+			copy->set_next(DeletedNode->get_next());
+			DeletedNode = nullptr;
+		}
+		else
+		{
+			this->pop_front();
+		}
+	}
+
+	Type GetIndEl(int ind) {
+		if (ind > this->size()) throw std::logic_error("ind > size");
+
+		int i = 0;
+		CNode<Type>*cur = head;
+		while (i != ind) {
+			cur = cur->get_next();
+			i++;
+		}
+		return cur->get_data();
 	}
 
 	void pop_front() {
@@ -198,6 +239,17 @@ public:
 				copy = nullptr;
 			}
 		}*/
+	}
+
+	bool operator==(const Clist right) {
+		CNode<Type>* head_copy1 = this->head;
+		CNode<Type>* head_copy2 = right.head;
+		if (this->size() != right.size())  return false;
+		while (head_copy1 != this->tail || head_copy2 != right.tail) {
+			if (head_copy1->get_data() != head_copy2->get_data()) return false;
+		}
+		if (head_copy1->get_data() != head_copy2->get_data()) return false;
+		return true;
 	}
 
 	~Clist()
