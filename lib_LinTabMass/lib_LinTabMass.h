@@ -19,11 +19,13 @@ public:
 	Data& operator= (const Data& right) {
 		this->name = right.name;
 		this->pol = right.pol;
+		return *this;
 	}
 
 	std::string getName() { return name; }
 	polinom getPolinom() { return pol; }
 	void setPolinom(polinom newPol) { pol = newPol; }
+	void setName(std::string name1) { name = name1; }
 };
 
 
@@ -41,29 +43,37 @@ public:
 		size = 0;
 	}
 
+	LinTabMass(int Maxsize1) {
+		dates = new Data[Maxsize1];
+		maxsize = Maxsize1;
+		size = 0;
+	}
+
 	void add(std::string name1, polinom pol) {
-		if (size == maxsize) massResize();
+		if (size + 1 == maxsize) massResize();
 		dates[size].Init(name1, pol);
 		size++;
 	}
 
-	void destroyPol(int pos) override {
+	void destroyPol(std::string DestroyName) override {
 		if (size == 0) throw std::logic_error("beda");
-		else
-		{
-			for (int i = pos; i < size; i++) {
-				dates[i] = dates[i + 1];
+		for (int j = 0; j < size; j++) {
+			if (dates[j].getName() == DestroyName) {
+				for (int i = j; i < size; i++) {
+					dates[i] = dates[i + 1];
+				}
+				size--;
+				return;
 			}
-			size--;
 		}
+		
 	}
 
 	polinom find(std::string findName) override {
 		for (int i = 0; i < size; i++) {
 			if (findName == dates[i].getName()) return dates[i].getPolinom();
 		}
-		polinom null;
-		return null;
+		throw std::logic_error("Polinoma s takim imenem net");
 	}
 
 	void findAndReplace(std::string findName, polinom pol) override {
@@ -80,9 +90,12 @@ public:
 	void massResize() {
 		Data* newData = new Data[maxsize];
 		maxsize += 3;
+
 		for (int i = 0; i < size; i++) {
-			newData[i] = dates[i];
+			newData[i].setPolinom(dates[i].getPolinom());
+			newData[i].setName(dates[i].getName());
 		}
+
 		dates = new Data[maxsize];
 		for (int i = 0; i < size; i++) {
 			dates[i] = newData[i];
