@@ -192,6 +192,10 @@ public:
 
 	}
 
+	polinom(const polinom& other) {
+		this->Lmons = other.Lmons;
+	}
+
 	polinom(std::string _pol)
 	{
 		monom m;
@@ -199,7 +203,7 @@ public:
 		int k = 0;
 		if (_pol[0] != '-')
 		{
-			m.coef = (int)(_pol[0] - 48);
+			m.coef = (float)((int)(_pol[0] - 48));
 		}
 		else
 		{
@@ -307,6 +311,12 @@ public:
 		break;
 		}
 	};
+	
+	polinom& operator=(const polinom& right) {
+		this->Lmons = right.Lmons;
+
+		return *this;
+	}
 
 	polinom& operator+(const polinom& right)
 	{
@@ -393,6 +403,10 @@ public:
 		return true;
 	}
 
+	int CountMonoms() {
+		return Lmons.size();
+	}
+
 	std::string print_polinom()
 	{
 
@@ -412,6 +426,7 @@ public:
 
 		return res;
 	}
+
 
 	~polinom() {
 		Lmons.clear();

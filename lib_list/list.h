@@ -252,6 +252,33 @@ public:
 		return true;
 	}
 
+	Clist& operator=(const Clist& rig)
+	{
+		/*for (int i = 0; i < rig.size(); i++) {
+			if (i > this->size()) this->push_back(rig.GetIndEl(i));
+			else this->GetIndEl(i) = rig.GetIndEl(i);
+		}
+		if (rig.size() < this->size()) {
+			for (int i = rig.size(); i < this->size(); i++) this->pop_back();
+		}
+		return *this;*/
+
+		if (rig.head == nullptr) {
+			this->head = nullptr;
+			this->tail = nullptr;
+			return *this;
+		}
+		
+		CNode<Type>* rig_copy = rig.head;
+		while (rig_copy->get_next() != nullptr)
+		{
+			this->push_back(rig_copy->get_data());
+			rig_copy = rig_copy->get_next();
+		}
+		if(rig_copy != nullptr) this->push_back(rig_copy->get_data());
+		
+		return *this;
+	}
 	~Clist()
 	{
 		this->clear();
