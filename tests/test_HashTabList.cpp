@@ -12,6 +12,13 @@ TEST(test_lib_HashTabList, can_do_funk_add) {
 	ASSERT_NO_THROW(htl.add("p1", pol));
 }
 
+TEST(test_lib_HashTabList, can_not_do_funk_add) {
+	polinom pol;
+	HashTableList htl;
+	htl.add("p1", pol);
+	ASSERT_ANY_THROW(htl.add("p1", pol));
+}
+
 TEST(test_lib_HashTabList, can_do_funk_destroyPol) {
 	polinom pol;
 	HashTableList htl;
@@ -35,11 +42,6 @@ TEST(test_lib_HashTabList, can_do_funk_find) {
 	//EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
 }
 
-TEST(test_lib_HashTableList, can_no_do_funk_find) {
-	HashTableList htl;
-	ASSERT_ANY_THROW(htl.find("p1"));
-	//EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
-}
 
 TEST(test_lib_HashTableList, can_not_do_funk_findAndReplace) {
 	polinom pol1;

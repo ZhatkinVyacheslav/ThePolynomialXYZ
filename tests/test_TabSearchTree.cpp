@@ -12,6 +12,13 @@ TEST(test_lib_TabSearchTree, can_do_funk_add) {
 	ASSERT_NO_THROW(tst.add("p1", pol));
 }
 
+TEST(test_lib_TabSearchTree, can_not_do_funk_add) {
+	polinom pol;
+	TabSearchTree tst;
+	tst.add("p1", pol);
+	ASSERT_ANY_THROW(tst.add("p1", pol));
+}
+
 TEST(test_lib_TabSearchTree, can_do_funk_destroyPol) {
 	polinom pol;
 	TabSearchTree tst;
@@ -38,12 +45,6 @@ TEST(test_lib_TabSearchTree, can_do_funk_findAndReplace) {
 	tst.add("p1", pol);
 	ASSERT_NO_THROW(tst.findAndReplace("p1", pol1));
 	//	EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
-}
-
-TEST(test_lib_TabSearchTree, can_no_do_funk_find) {
-	TabSearchTree tst;
-	ASSERT_ANY_THROW(tst.find("p1"));
-	//EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
 }
 
 TEST(test_lib_TabSearchTree, can_not_do_funk_findAndReplace) {

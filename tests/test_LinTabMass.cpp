@@ -19,6 +19,13 @@ TEST(test_lib_LinTabMass, can_do_funk_destroyPol) {
 	ASSERT_NO_THROW(ltm.destroyPol("p1"));
 }
 
+TEST(test_lib_LinTabMass, can_not_do_funk_add) {
+	polinom pol;
+	LinTabMass ltm;
+	ltm.add("p1", pol);
+	ASSERT_ANY_THROW(ltm.add("p1", pol));
+}
+
 TEST(test_lib_LinTabMass, can_do_funk_find) {
 	polinom pol;
 	monom mon(2, 2, 2, 2);
@@ -47,11 +54,6 @@ TEST(test_lib_LinTabMass, can_not_do_funk_destroyPol) {
 }
 
 
-TEST(test_lib_LinTabMass, can_no_do_funk_find) {
-	LinTabMass ltm;
-	ASSERT_ANY_THROW(ltm.find("p1"));
-	//EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
-}
 
 TEST(test_lib_LinTabMass, can_not_do_funk_findAndReplace) {
 	polinom pol1;

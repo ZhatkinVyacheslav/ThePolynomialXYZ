@@ -18,6 +18,12 @@ TEST(test_lib_HashOpenShuffle, can_not_do_funk_destroyPol) {
 	ASSERT_ANY_THROW(hos.destroyPol("p1"));
 }
 
+TEST(test_lib_HashOpenShuffle, can_not_do_funk_add) {
+	polinom pol;
+	HashOpenShuffle hos;
+	hos.add("p1", pol);
+	ASSERT_ANY_THROW(hos.add("p1", pol));
+}
 
 TEST(test_lib_HashOpenShuffle, can_do_funk_find) {
 	polinom pol;
@@ -26,12 +32,6 @@ TEST(test_lib_HashOpenShuffle, can_do_funk_find) {
 	HashOpenShuffle hos;
 	hos.add("p1", pol);
 	ASSERT_NO_THROW(hos.find("p1"));
-	//EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
-}
-
-TEST(test_lib_HashOpenShuffle, can_no_do_funk_find) {
-	HashOpenShuffle hos;
-	ASSERT_ANY_THROW(hos.find("p1"));
 	//EXPECT_EQ(ltm.find("p1").get_First_coef(), mon.get_coef());
 }
 
