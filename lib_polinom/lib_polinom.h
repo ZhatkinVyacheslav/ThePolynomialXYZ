@@ -33,13 +33,35 @@ public:
 
 	std::string print_monom()
 	{
+		std::string degX = "";
+		std::string degY = "";
+		std::string degZ = "";
 
+		if (this->degreeX != 0)
+		{
+			degX = " x^" + std::to_string(degreeX);
+		}
+		if (this->degreeY != 0)
+		{
+			degY = " y^" + std::to_string(degreeY);
+		}
+		if (this->degreeZ != 0)
+		{
+			degZ = " z^" + std::to_string(degreeZ);
+		}
 
-		std::string res = std::to_string(coef) + " x^" + std::to_string(degreeX) + " y^" + std::to_string(degreeY) + " z^" + std::to_string(degreeZ);
-
+		std::string res = std::to_string(coef) + degX + degY + degZ;
 		return res;
 
-	};
+	}
+
+	void clear()
+	{
+		this->coef = 0;
+		this->degreeX = 0;
+		this->degreeY = 0;
+		this->degreeZ = 0;
+	}
 
 	void set_degreeX(int _degreeX)
 	{
@@ -195,7 +217,6 @@ public:
 	polinom(const polinom& other) {
 		this->Lmons = other.Lmons;
 	}
-
 	polinom(std::string _pol)
 	{
 		monom m;
@@ -203,7 +224,7 @@ public:
 		int k = 0;
 		if (_pol[0] != '-')
 		{
-			m.coef = (float)((int)(_pol[0] - 48));
+			m.coef = (int)(_pol[0] - 48);
 		}
 		else
 		{
@@ -233,12 +254,90 @@ public:
 						m.degreeZ = (int)(_pol[i + 2] - 48);
 						i = i + 2;
 					}
+					else
+					{
+						if (_pol[i] == '-' || _pol[i] == '+')
+						{
+							add_monom(m);
+							m.clear();
+							m.coef = (int)(_pol[i + 2] - 48);
+						}
+					}
 				}
 			}
+
 		}
 		add_monom(m);
 	}
 
+
+	//polinom(std::string _pol)
+	//{
+	//	monom m;
+	//	std::string buffer;
+	//	int k = 0;
+	//	if (_pol[0] != '-')
+	//	{
+	//		m.coef = (int)(_pol[0] - 48);
+	//	}
+	//	else
+	//	{
+	//		m.coef = (int)(_pol[1] - 48);
+	//		k = 1;
+	//	}
+	//	
+	//	for (int i = k; i < _pol.size(); i++)
+	//	{
+	//		if (_pol[i] == 'x' && _pol[i + 1] == '^')
+	//		{
+	//			buffer = _pol[i + 2];
+	//			if ((int)_pol[i + 3] < 48 || (int)_pol[i + 3] > 58)
+	//			{
+	//				buffer += _pol[i + 3];
+	//				i = i + 3;
+	//			} else i = i + 2;
+	//			m.degreeX = std::stoi(buffer);
+	//		}
+	//		else
+	//		{
+	//			if (_pol[i] == 'y' && _pol[i + 1] == '^')
+	//			{
+	//				buffer = _pol[i + 2];
+	//				if ((int)_pol[i + 3] < 48 || (int)_pol[i + 3] > 58)
+	//				{
+	//					buffer += _pol[i + 3];
+	//					i = i + 3;
+	//				}
+	//				else i = i + 2;
+	//				m.degreeY = std::stoi(buffer);
+	//			}
+	//			else
+	//			{
+	//				if (_pol[i] == 'z' && _pol[i + 1] == '^')
+	//				{
+	//					buffer = _pol[i + 2];
+	//					if ((int)_pol[i + 3] < 48 || (int)_pol[i + 3] > 58)
+	//					{
+	//						buffer += _pol[i + 3];
+	//						i = i + 3;
+	//					}
+	//					else i = i + 2;
+	//					m.degreeZ = std::stoi(buffer);
+	//				}
+	//				else
+	//				{
+	//					if (_pol[i] == '-' || _pol[i] == '+')
+	//					{
+	//						add_monom(m);
+	//						m.clear();
+	//						m.coef = (int)(_pol[i + 2] - 48);
+	//					}
+	//				}
+	//			}
+	//		}
+	//	}
+	//	add_monom(m);
+	//}
 
 	float CalculatePointPolinom(int x, int y, int z)
 	{
@@ -272,6 +371,11 @@ public:
 
 			for (size_t i = 0; i < this->Lmons.size(); i++)
 			{
+				if (pol.Lmons.GetIndEl(i).degreeX == 0)
+				{
+					throw std::logic_error("Degree X = 0!");
+				}
+
 				res.Lmons.push_back(pol.Lmons.GetIndEl(i).derivative_mon_X());
 			}
 
@@ -285,6 +389,11 @@ public:
 
 			for (size_t i = 0; i < this->Lmons.size(); i++)
 			{
+				if (pol.Lmons.GetIndEl(i).degreeY == 0)
+				{
+					throw std::logic_error("Degree Y = 0!");
+				}
+
 				res.Lmons.push_back(pol.Lmons.GetIndEl(i).derivative_mon_Y());
 			}
 
@@ -298,6 +407,11 @@ public:
 
 			for (size_t i = 0; i < this->Lmons.size(); i++)
 			{
+				if (pol.Lmons.GetIndEl(i).degreeZ == 0)
+				{
+					throw std::logic_error("Degree Z = 0!");
+				}
+
 				res.Lmons.push_back(pol.Lmons.GetIndEl(i).derivative_mon_Z());
 			}
 
@@ -310,7 +424,7 @@ public:
 		}
 		break;
 		}
-	};
+	}
 	
 	polinom& operator=(const polinom& right) {
 		this->Lmons = right.Lmons;
