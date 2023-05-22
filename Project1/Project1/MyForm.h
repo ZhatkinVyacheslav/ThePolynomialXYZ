@@ -1,10 +1,5 @@
 #pragma once
-#include "D:\prog\ThePolynomialXYZ\CmakePolinom\lib_LinTabMass/lib_LinTabMass.h"
-#include "D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom/lib_polinom.h"
-//#include "D:\prog\ThePolynomialXYZ\CmakePolinom\lib_HashOpenShuffle/lib_HashOpenShuffle.h"
-#include "D:\prog\ThePolynomialXYZ\CmakePolinom\lib_TabSearchTree/lib_TabSearchTree.h"
-//#include "D:\prog\ThePolynomialXYZ\CmakePolinom\lib_LinTabList//lib_LinTabList.h"
-#include "D:\prog\ThePolynomialXYZ\CmakePolinom\lib_HashOpenShuffle/lib_HashOpenShuffle.h"
+#include "Funks.h"
 
 
 namespace Project1 {
@@ -147,9 +142,10 @@ namespace Project1 {
 			// dataGridView1
 			// 
 			this->dataGridView1->ColumnHeadersHeightSizeMode = System::Windows::Forms::DataGridViewColumnHeadersHeightSizeMode::AutoSize;
-			this->dataGridView1->Location = System::Drawing::Point(236, 56);
+			this->dataGridView1->Location = System::Drawing::Point(315, 69);
+			this->dataGridView1->Margin = System::Windows::Forms::Padding(4);
 			this->dataGridView1->Name = L"dataGridView1";
-			this->dataGridView1->Size = System::Drawing::Size(388, 347);
+			this->dataGridView1->Size = System::Drawing::Size(517, 427);
 			this->dataGridView1->TabIndex = 0;
 			// 
 			// label1
@@ -157,7 +153,8 @@ namespace Project1 {
 			this->label1->AutoSize = true;
 			this->label1->Font = (gcnew System::Drawing::Font(L"Times New Roman", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label1->Location = System::Drawing::Point(232, 24);
+			this->label1->Location = System::Drawing::Point(309, 30);
+			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
 			this->label1->Size = System::Drawing::Size(152, 19);
 			this->label1->TabIndex = 1;
@@ -172,7 +169,8 @@ namespace Project1 {
 			});
 			this->menuStrip1->Location = System::Drawing::Point(0, 0);
 			this->menuStrip1->Name = L"menuStrip1";
-			this->menuStrip1->Size = System::Drawing::Size(624, 24);
+			this->menuStrip1->Padding = System::Windows::Forms::Padding(8, 2, 0, 2);
+			this->menuStrip1->Size = System::Drawing::Size(837, 24);
 			this->menuStrip1->TabIndex = 2;
 			this->menuStrip1->Text = L"menuStrip1";
 			// 
@@ -192,36 +190,42 @@ namespace Project1 {
 			this->линейнаяТаблицаНаМассивеToolStripMenuItem->Name = L"линейнаяТаблицаНаМассивеToolStripMenuItem";
 			this->линейнаяТаблицаНаМассивеToolStripMenuItem->Size = System::Drawing::Size(311, 22);
 			this->линейнаяТаблицаНаМассивеToolStripMenuItem->Text = L"Линейная таблица на массиве ";
+			this->линейнаяТаблицаНаМассивеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::линейнаяТаблицаНаМассивеToolStripMenuItem_Click);
 			// 
 			// линейнаяТаблицаНаЛистеToolStripMenuItem
 			// 
 			this->линейнаяТаблицаНаЛистеToolStripMenuItem->Name = L"линейнаяТаблицаНаЛистеToolStripMenuItem";
 			this->линейнаяТаблицаНаЛистеToolStripMenuItem->Size = System::Drawing::Size(311, 22);
 			this->линейнаяТаблицаНаЛистеToolStripMenuItem->Text = L"Линейная таблица на листе";
+			this->линейнаяТаблицаНаЛистеToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::линейнаяТаблицаНаЛистеToolStripMenuItem_Click);
 			// 
 			// хештаблицаСОткрытмПеремешиваниемToolStripMenuItem
 			// 
 			this->хештаблицаСОткрытмПеремешиваниемToolStripMenuItem->Name = L"хештаблицаСОткрытмПеремешиваниемToolStripMenuItem";
 			this->хештаблицаСОткрытмПеремешиваниемToolStripMenuItem->Size = System::Drawing::Size(311, 22);
 			this->хештаблицаСОткрытмПеремешиваниемToolStripMenuItem->Text = L"Хеш-таблица с открытм перемешиванием";
+			this->хештаблицаСОткрытмПеремешиваниемToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::хештаблицаСОткрытмПеремешиваниемToolStripMenuItem_Click);
 			// 
 			// хештаблицаСоСпискамиToolStripMenuItem
 			// 
 			this->хештаблицаСоСпискамиToolStripMenuItem->Name = L"хештаблицаСоСпискамиToolStripMenuItem";
 			this->хештаблицаСоСпискамиToolStripMenuItem->Size = System::Drawing::Size(311, 22);
 			this->хештаблицаСоСпискамиToolStripMenuItem->Text = L"Хеш-таблица со списками";
+			this->хештаблицаСоСпискамиToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::хештаблицаСоСпискамиToolStripMenuItem_Click);
 			// 
 			// аВЛДеревоToolStripMenuItem
 			// 
 			this->аВЛДеревоToolStripMenuItem->Name = L"аВЛДеревоToolStripMenuItem";
 			this->аВЛДеревоToolStripMenuItem->Size = System::Drawing::Size(311, 22);
 			this->аВЛДеревоToolStripMenuItem->Text = L"АВЛ дерево";
+			this->аВЛДеревоToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::аВЛДеревоToolStripMenuItem_Click);
 			// 
 			// упорядоченнаяТаблицаToolStripMenuItem
 			// 
 			this->упорядоченнаяТаблицаToolStripMenuItem->Name = L"упорядоченнаяТаблицаToolStripMenuItem";
 			this->упорядоченнаяТаблицаToolStripMenuItem->Size = System::Drawing::Size(311, 22);
 			this->упорядоченнаяТаблицаToolStripMenuItem->Text = L"Упорядоченная таблица";
+			this->упорядоченнаяТаблицаToolStripMenuItem->Click += gcnew System::EventHandler(this, &MyForm::упорядоченнаяТаблицаToolStripMenuItem_Click);
 			// 
 			// toolStripMenuItem1
 			// 
@@ -232,41 +236,46 @@ namespace Project1 {
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(0, 56);
+			this->label2->Location = System::Drawing::Point(0, 69);
+			this->label2->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(60, 13);
+			this->label2->Size = System::Drawing::Size(76, 16);
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Название:";
 			// 
 			// label3
 			// 
 			this->label3->AutoSize = true;
-			this->label3->Location = System::Drawing::Point(82, 56);
+			this->label3->Location = System::Drawing::Point(109, 69);
+			this->label3->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label3->Name = L"label3";
-			this->label3->Size = System::Drawing::Size(56, 13);
+			this->label3->Size = System::Drawing::Size(69, 16);
 			this->label3->TabIndex = 4;
 			this->label3->Text = L"Полином:";
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(3, 73);
+			this->textBox1->Location = System::Drawing::Point(4, 90);
+			this->textBox1->Margin = System::Windows::Forms::Padding(4);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(76, 20);
+			this->textBox1->Size = System::Drawing::Size(100, 22);
 			this->textBox1->TabIndex = 5;
 			// 
 			// textBox2
 			// 
-			this->textBox2->Location = System::Drawing::Point(85, 72);
+			this->textBox2->Location = System::Drawing::Point(113, 89);
+			this->textBox2->Margin = System::Windows::Forms::Padding(4);
 			this->textBox2->Name = L"textBox2";
-			this->textBox2->Size = System::Drawing::Size(145, 20);
+			this->textBox2->Size = System::Drawing::Size(192, 22);
 			this->textBox2->TabIndex = 6;
 			// 
 			// button1
 			// 
 			this->button1->BackColor = System::Drawing::SystemColors::Info;
-			this->button1->Location = System::Drawing::Point(97, 96);
+			this->button1->Location = System::Drawing::Point(129, 118);
+			this->button1->Margin = System::Windows::Forms::Padding(4);
 			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(133, 43);
+			this->button1->Size = System::Drawing::Size(177, 53);
 			this->button1->TabIndex = 7;
 			this->button1->Text = L"Добавить полином";
 			this->button1->UseVisualStyleBackColor = false;
@@ -275,9 +284,10 @@ namespace Project1 {
 			// button2
 			// 
 			this->button2->BackColor = System::Drawing::SystemColors::Info;
-			this->button2->Location = System::Drawing::Point(97, 137);
+			this->button2->Location = System::Drawing::Point(129, 169);
+			this->button2->Margin = System::Windows::Forms::Padding(4);
 			this->button2->Name = L"button2";
-			this->button2->Size = System::Drawing::Size(133, 42);
+			this->button2->Size = System::Drawing::Size(177, 52);
 			this->button2->TabIndex = 8;
 			this->button2->Text = L"Изменить полином";
 			this->button2->UseVisualStyleBackColor = false;
@@ -287,50 +297,56 @@ namespace Project1 {
 			// 
 			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 8.25F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(204)));
-			this->label4->Location = System::Drawing::Point(0, 96);
+			this->label4->Location = System::Drawing::Point(0, 118);
+			this->label4->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label4->Name = L"label4";
-			this->label4->Size = System::Drawing::Size(91, 83);
+			this->label4->Size = System::Drawing::Size(121, 102);
 			this->label4->TabIndex = 9;
 			this->label4->Text = L"Для изменения полинома, нужно вписать название уже существующего полинома";
 			// 
 			// label5
 			// 
 			this->label5->AutoSize = true;
-			this->label5->Location = System::Drawing::Point(0, 252);
+			this->label5->Location = System::Drawing::Point(0, 310);
+			this->label5->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label5->Name = L"label5";
-			this->label5->Size = System::Drawing::Size(66, 13);
+			this->label5->Size = System::Drawing::Size(83, 16);
 			this->label5->TabIndex = 10;
 			this->label5->Text = L"Название1:";
 			// 
 			// label6
 			// 
 			this->label6->AutoSize = true;
-			this->label6->Location = System::Drawing::Point(121, 252);
+			this->label6->Location = System::Drawing::Point(161, 310);
+			this->label6->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label6->Name = L"label6";
-			this->label6->Size = System::Drawing::Size(66, 13);
+			this->label6->Size = System::Drawing::Size(83, 16);
 			this->label6->TabIndex = 11;
 			this->label6->Text = L"Название2:";
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(3, 268);
+			this->textBox3->Location = System::Drawing::Point(4, 330);
+			this->textBox3->Margin = System::Windows::Forms::Padding(4);
 			this->textBox3->Name = L"textBox3";
-			this->textBox3->Size = System::Drawing::Size(100, 20);
+			this->textBox3->Size = System::Drawing::Size(132, 22);
 			this->textBox3->TabIndex = 12;
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(124, 268);
+			this->textBox4->Location = System::Drawing::Point(165, 330);
+			this->textBox4->Margin = System::Windows::Forms::Padding(4);
 			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(106, 20);
+			this->textBox4->Size = System::Drawing::Size(140, 22);
 			this->textBox4->TabIndex = 13;
 			// 
 			// button3
 			// 
 			this->button3->BackColor = System::Drawing::SystemColors::Info;
-			this->button3->Location = System::Drawing::Point(3, 294);
+			this->button3->Location = System::Drawing::Point(4, 362);
+			this->button3->Margin = System::Windows::Forms::Padding(4);
 			this->button3->Name = L"button3";
-			this->button3->Size = System::Drawing::Size(50, 23);
+			this->button3->Size = System::Drawing::Size(67, 28);
 			this->button3->TabIndex = 14;
 			this->button3->Text = L"Сумма";
 			this->button3->UseVisualStyleBackColor = false;
@@ -339,9 +355,10 @@ namespace Project1 {
 			// button4
 			// 
 			this->button4->BackColor = System::Drawing::SystemColors::Info;
-			this->button4->Location = System::Drawing::Point(59, 294);
+			this->button4->Location = System::Drawing::Point(79, 362);
+			this->button4->Margin = System::Windows::Forms::Padding(4);
 			this->button4->Name = L"button4";
-			this->button4->Size = System::Drawing::Size(71, 23);
+			this->button4->Size = System::Drawing::Size(95, 28);
 			this->button4->TabIndex = 15;
 			this->button4->Text = L"Разность";
 			this->button4->UseVisualStyleBackColor = false;
@@ -350,9 +367,10 @@ namespace Project1 {
 			// button5
 			// 
 			this->button5->BackColor = System::Drawing::SystemColors::Info;
-			this->button5->Location = System::Drawing::Point(136, 294);
+			this->button5->Location = System::Drawing::Point(181, 362);
+			this->button5->Margin = System::Windows::Forms::Padding(4);
 			this->button5->Name = L"button5";
-			this->button5->Size = System::Drawing::Size(94, 23);
+			this->button5->Size = System::Drawing::Size(125, 28);
 			this->button5->TabIndex = 16;
 			this->button5->Text = L"Произведение";
 			this->button5->UseVisualStyleBackColor = false;
@@ -360,17 +378,19 @@ namespace Project1 {
 			// 
 			// textBox5
 			// 
-			this->textBox5->Location = System::Drawing::Point(3, 365);
+			this->textBox5->Location = System::Drawing::Point(4, 449);
+			this->textBox5->Margin = System::Windows::Forms::Padding(4);
 			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(47, 20);
+			this->textBox5->Size = System::Drawing::Size(61, 22);
 			this->textBox5->TabIndex = 17;
 			// 
 			// button6
 			// 
 			this->button6->BackColor = System::Drawing::SystemColors::Info;
-			this->button6->Location = System::Drawing::Point(136, 364);
+			this->button6->Location = System::Drawing::Point(181, 448);
+			this->button6->Margin = System::Windows::Forms::Padding(4);
 			this->button6->Name = L"button6";
-			this->button6->Size = System::Drawing::Size(94, 21);
+			this->button6->Size = System::Drawing::Size(125, 26);
 			this->button6->TabIndex = 18;
 			this->button6->Text = L"Произведение на число ";
 			this->button6->UseVisualStyleBackColor = false;
@@ -378,25 +398,28 @@ namespace Project1 {
 			// 
 			// label7
 			// 
-			this->label7->Location = System::Drawing::Point(0, 333);
+			this->label7->Location = System::Drawing::Point(0, 410);
+			this->label7->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label7->Name = L"label7";
-			this->label7->Size = System::Drawing::Size(76, 29);
+			this->label7->Size = System::Drawing::Size(101, 36);
 			this->label7->TabIndex = 19;
 			this->label7->Text = L"Множитель число:";
 			// 
 			// textBox6
 			// 
-			this->textBox6->Location = System::Drawing::Point(3, 434);
+			this->textBox6->Location = System::Drawing::Point(4, 534);
+			this->textBox6->Margin = System::Windows::Forms::Padding(4);
 			this->textBox6->Name = L"textBox6";
-			this->textBox6->Size = System::Drawing::Size(47, 20);
+			this->textBox6->Size = System::Drawing::Size(61, 22);
 			this->textBox6->TabIndex = 20;
 			// 
 			// button7
 			// 
 			this->button7->BackColor = System::Drawing::SystemColors::Info;
-			this->button7->Location = System::Drawing::Point(164, 417);
+			this->button7->Location = System::Drawing::Point(219, 513);
+			this->button7->Margin = System::Windows::Forms::Padding(4);
 			this->button7->Name = L"button7";
-			this->button7->Size = System::Drawing::Size(100, 37);
+			this->button7->Size = System::Drawing::Size(133, 46);
 			this->button7->TabIndex = 21;
 			this->button7->Text = L"Производная ";
 			this->button7->UseVisualStyleBackColor = false;
@@ -404,18 +427,20 @@ namespace Project1 {
 			// 
 			// label8
 			// 
-			this->label8->Location = System::Drawing::Point(0, 388);
+			this->label8->Location = System::Drawing::Point(0, 478);
+			this->label8->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label8->Name = L"label8";
-			this->label8->Size = System::Drawing::Size(111, 43);
+			this->label8->Size = System::Drawing::Size(148, 53);
 			this->label8->TabIndex = 22;
 			this->label8->Text = L"Введите по какой переменной искать производную:";
 			// 
 			// button8
 			// 
 			this->button8->BackColor = System::Drawing::SystemColors::Info;
-			this->button8->Location = System::Drawing::Point(456, 417);
+			this->button8->Location = System::Drawing::Point(608, 504);
+			this->button8->Margin = System::Windows::Forms::Padding(4);
 			this->button8->Name = L"button8";
-			this->button8->Size = System::Drawing::Size(115, 37);
+			this->button8->Size = System::Drawing::Size(167, 55);
 			this->button8->TabIndex = 23;
 			this->button8->Text = L"Закрыть ";
 			this->button8->UseVisualStyleBackColor = false;
@@ -424,9 +449,10 @@ namespace Project1 {
 			// button9
 			// 
 			this->button9->BackColor = System::Drawing::SystemColors::Info;
-			this->button9->Location = System::Drawing::Point(336, 417);
+			this->button9->Location = System::Drawing::Point(435, 504);
+			this->button9->Margin = System::Windows::Forms::Padding(4);
 			this->button9->Name = L"button9";
-			this->button9->Size = System::Drawing::Size(125, 37);
+			this->button9->Size = System::Drawing::Size(180, 55);
 			this->button9->TabIndex = 24;
 			this->button9->Text = L"Очистить";
 			this->button9->UseVisualStyleBackColor = false;
@@ -434,58 +460,65 @@ namespace Project1 {
 			// 
 			// textBox7
 			// 
-			this->textBox7->Location = System::Drawing::Point(56, 365);
+			this->textBox7->Location = System::Drawing::Point(75, 449);
+			this->textBox7->Margin = System::Windows::Forms::Padding(4);
 			this->textBox7->Name = L"textBox7";
-			this->textBox7->Size = System::Drawing::Size(74, 20);
+			this->textBox7->Size = System::Drawing::Size(97, 22);
 			this->textBox7->TabIndex = 25;
 			// 
 			// textBox8
 			// 
-			this->textBox8->Location = System::Drawing::Point(59, 433);
+			this->textBox8->Location = System::Drawing::Point(79, 533);
+			this->textBox8->Margin = System::Windows::Forms::Padding(4);
 			this->textBox8->Name = L"textBox8";
-			this->textBox8->Size = System::Drawing::Size(99, 20);
+			this->textBox8->Size = System::Drawing::Size(131, 22);
 			this->textBox8->TabIndex = 26;
 			// 
 			// label9
 			// 
 			this->label9->AutoSize = true;
-			this->label9->Location = System::Drawing::Point(98, 417);
+			this->label9->Location = System::Drawing::Point(131, 513);
+			this->label9->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label9->Name = L"label9";
-			this->label9->Size = System::Drawing::Size(60, 13);
+			this->label9->Size = System::Drawing::Size(76, 16);
 			this->label9->TabIndex = 27;
 			this->label9->Text = L"Название:";
 			// 
 			// label10
 			// 
 			this->label10->AutoSize = true;
-			this->label10->Location = System::Drawing::Point(70, 349);
+			this->label10->Location = System::Drawing::Point(93, 430);
+			this->label10->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label10->Name = L"label10";
-			this->label10->Size = System::Drawing::Size(60, 13);
+			this->label10->Size = System::Drawing::Size(76, 16);
 			this->label10->TabIndex = 28;
 			this->label10->Text = L"Название:";
 			// 
 			// textBox9
 			// 
-			this->textBox9->Location = System::Drawing::Point(3, 214);
+			this->textBox9->Location = System::Drawing::Point(4, 263);
+			this->textBox9->Margin = System::Windows::Forms::Padding(4);
 			this->textBox9->Name = L"textBox9";
-			this->textBox9->Size = System::Drawing::Size(79, 20);
+			this->textBox9->Size = System::Drawing::Size(104, 22);
 			this->textBox9->TabIndex = 29;
 			// 
 			// label11
 			// 
 			this->label11->AutoSize = true;
-			this->label11->Location = System::Drawing::Point(0, 198);
+			this->label11->Location = System::Drawing::Point(0, 244);
+			this->label11->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label11->Name = L"label11";
-			this->label11->Size = System::Drawing::Size(60, 13);
+			this->label11->Size = System::Drawing::Size(76, 16);
 			this->label11->TabIndex = 30;
 			this->label11->Text = L"Название:";
 			// 
 			// button10
 			// 
 			this->button10->BackColor = System::Drawing::SystemColors::Info;
-			this->button10->Location = System::Drawing::Point(83, 214);
+			this->button10->Location = System::Drawing::Point(111, 263);
+			this->button10->Margin = System::Windows::Forms::Padding(4);
 			this->button10->Name = L"button10";
-			this->button10->Size = System::Drawing::Size(75, 23);
+			this->button10->Size = System::Drawing::Size(100, 28);
 			this->button10->TabIndex = 31;
 			this->button10->Text = L"Удалить";
 			this->button10->UseVisualStyleBackColor = false;
@@ -494,19 +527,20 @@ namespace Project1 {
 			// button11
 			// 
 			this->button11->BackColor = System::Drawing::SystemColors::Info;
-			this->button11->Location = System::Drawing::Point(155, 214);
+			this->button11->Location = System::Drawing::Point(207, 263);
+			this->button11->Margin = System::Windows::Forms::Padding(4);
 			this->button11->Name = L"button11";
-			this->button11->Size = System::Drawing::Size(75, 23);
+			this->button11->Size = System::Drawing::Size(100, 28);
 			this->button11->TabIndex = 32;
 			this->button11->Text = L"Найти";
 			this->button11->UseVisualStyleBackColor = false;
 			// 
 			// MyForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
+			this->AutoScaleDimensions = System::Drawing::SizeF(8, 16);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->BackColor = System::Drawing::SystemColors::ActiveCaption;
-			this->ClientSize = System::Drawing::Size(624, 456);
+			this->ClientSize = System::Drawing::Size(837, 567);
 			this->Controls->Add(this->button11);
 			this->Controls->Add(this->button10);
 			this->Controls->Add(this->label11);
@@ -541,6 +575,7 @@ namespace Project1 {
 			this->Controls->Add(this->dataGridView1);
 			this->Controls->Add(this->menuStrip1);
 			this->MainMenuStrip = this->menuStrip1;
+			this->Margin = System::Windows::Forms::Padding(4);
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
 			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
@@ -553,76 +588,65 @@ namespace Project1 {
 		}
 #pragma endregion
 	private: System::Void MyForm_Load(System::Object^ sender, System::EventArgs^ e) {
-		dataGridView1->Columns->Add("Name", "Name");
-		dataGridView1->Columns->Add("Polinom", "Polinom");
+		dataGridView1->Columns->Add("Название", "Название");
+		dataGridView1->Columns->Add("Полином", "Полином");
 		for (int i = 0; i < 15; i++) {
 			dataGridView1->Rows->Add();
 		}
-
-		dataGridView1->Rows[0]->Cells[0]->Value = "name1";
-		dataGridView1->Rows[1]->Cells[0]->Value = "name2";
-		dataGridView1->Rows[0]->Cells[1]->Value = "2 x^2 y^2 z^2 + 3x^4";
-		dataGridView1->Rows[1]->Cells[1]->Value = "x y^2 + 2 x^2 y^2 z^2";
-		size = 2;
+		size = 0;
 	}
+		   // Добавление полинома 
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		dataGridView1->Rows[size]->Cells[0]->Value = textBox1->Text;
 		dataGridView1->Rows[size]->Cells[1]->Value = textBox2->Text;
+		add(To_string(textBox1->Text), To_string(textBox2->Text));
 		size++;
+		print();
 	}
-
+		   // Закрытие программы 
 	private: System::Void button8_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
 
-		  
+		  // Изменение полнома по названию 
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) { 
-		for (int i = 0; i < size; i++)
-		{
-			if (dataGridView1->Rows[i]->Cells[0]->Value == textBox1->Text) dataGridView1->Rows[i]->Cells[1]->Value = textBox2->Text;
-		}
-
+		findAndReplace(To_string(textBox1->Text), To_string(textBox2->Text));
+		print();
 	}
-
+		   // Сумма полиномов 
 	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ result = "4 x^2 y^2 z^2 + 3 x^4 + x y^2";
-		MessageBox::Show(result, "MessageBox Test",
+		MessageBox::Show(To_SysString(plus(To_string(textBox3->Text), To_string(textBox4->Text))), "MessageBox Test",
 			MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 	}
-
+		   //Разность полиномов
 	private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ result = "3x^4 - x y ^ 2";
-		MessageBox::Show(result, "MessageBox Test",
+		MessageBox::Show(To_SysString(minus(To_string(textBox3->Text), To_string(textBox4->Text))), "MessageBox Test",
 			MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 	}
-
+		   //Произведение полиномов
 	private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ result = "2 x^3 y^4 z^2 + 4x^4 y^4 z^4 + 2 x^5 y^2 + 3 x^6 y^2 z^2";
-		MessageBox::Show(result, "MessageBox Test",
+
+		MessageBox::Show(To_SysString(multuply(To_string(textBox3->Text), To_string(textBox4->Text))), "MessageBox for multuply",
 			MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 	}
+		   //Производная полиномов 
 	private: System::Void button7_Click(System::Object^ sender, System::EventArgs^ e) {
 			String^ result = "";
-			if (textBox6->Text == "x") result = "4 x y^2 z^2 + 12x^3";
-			else if (textBox6->Text == "y") result = "4 x^2 y z^2 + 3x^3";
-			else if (textBox6->Text == "z")  result = "4 x^2 y^2 z + 3x^3";
+			if (textBox6->Text == "x") result = To_SysString(Derivative(To_string(textBox8->Text),1));
+			else if (textBox6->Text == "y") result = To_SysString(Derivative(To_string(textBox8->Text), 2));
+			else if (textBox6->Text == "z") result = To_SysString(Derivative(To_string(textBox8->Text), 3));
 			else  result = "Такой переменной нет";
 			
-			MessageBox::Show(result, "MessageBox Test",
+			MessageBox::Show(result, "MessageBox for derivative",
 				MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 	}
-
+		   // Произведение полинома на число 
 	private: System::Void button6_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ result = "";
-		if (textBox5->Text == "2") result = "4 x^2 y^2 z^2 + 3x^4";
-		else if (textBox5->Text == "3") result = "6 x^2 y^2 z^2 + 3x^4";
-		else if (textBox5->Text == "4")  result = "8 x^2 y^2 z^2 + 3x^4";
-		else  result = "Извините, я это не продумал";
-
-		MessageBox::Show(result, "MessageBox Test",
+		int number = std::stoi(To_string(textBox5->Text));
+		MessageBox::Show(To_SysString(multuplyOnNumber(	To_string(textBox7->Text), number)), "MessageBox for multuply on number",
 			MessageBoxButtons::OK, MessageBoxIcon::Exclamation);
 	}
-
+		   // Кнопка очитски текст боксов
 	private: System::Void button9_Click(System::Object^ sender, System::EventArgs^ e) {
 		textBox1->Text = "";
 		textBox2->Text = "";
@@ -634,15 +658,50 @@ namespace Project1 {
 		textBox8->Text = "";
 		textBox9->Text = "";
 	}
-
+		   // Удаление полинома
 	private: System::Void button10_Click(System::Object^ sender, System::EventArgs^ e) {
-		String^ DeleteName = textBox9->Text;
-		for (int i = 0; i < 15; i++) {
-			if (dataGridView1->Rows[i]->Cells[0]->Value == DeleteName) {
-				dataGridView1->Rows[i]->Cells[0]->Value = "";
-				dataGridView1->Rows[i]->Cells[1]->Value = "";
+		remove(To_string(textBox9->Text));
+		size--;
+		print();
+	}
+		   // Вывод полиномов в форму из выбанной таблицы
+	private: void print() {
+		if (size == 0) {
+			for (int i = 0; i < 15; i++) {
+				dataGridView1->Rows[i]->Cells[0]->Value = " ";
+				dataGridView1->Rows[i]->Cells[1]->Value = " ";
 			}
 		}
+		for (int i = 0; i < size; i++) {
+			dataGridView1->Rows[i]->Cells[0]->Value = To_SysString(StrPrint()[i].first);
+			dataGridView1->Rows[i]->Cells[1]->Value = To_SysString(StrPrint()[i].second);
+		}
 	}
+		   //Выбор таблиыц 
+private: System::Void линейнаяТаблицаНаМассивеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	mode = 0;
+	print();
+}
+private: System::Void линейнаяТаблицаНаЛистеToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	mode = 1;
+	print();
+}
+private: System::Void хештаблицаСОткрытмПеремешиваниемToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	mode = 3;
+	print();
+}
+private: System::Void хештаблицаСоСпискамиToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	mode = 4;
+	print();
+}
+private: System::Void упорядоченнаяТаблицаToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	mode = 2;
+	print();
+}
+private: System::Void аВЛДеревоToolStripMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	mode = 5;
+	print();
+}
+
 };
 }

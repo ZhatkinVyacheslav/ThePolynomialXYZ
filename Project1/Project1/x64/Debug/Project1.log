@@ -1,11 +1,26 @@
 ﻿  MyForm.cpp
 D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(101,71): warning C4244: =: преобразование "double" в "float", возможна потеря данных
-D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(202,27): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(206,27): warning C4244: =: преобразование "int" в "float", возможна потеря данных
-D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(271,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(284,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(297,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
-D:\prog\ThePolynomialXYZ\CmakePolinom\lib_HashOpenShuffle\lib_HashOpenShuffle.h(132,7): warning C4101: i: неиспользованная локальная переменная
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(210,27): warning C4244: =: преобразование "int" в "float", возможна потеря данных
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(275,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(288,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(301,1): warning C4267: аргумент: преобразование из "size_t" в "int"; возможна потеря данных
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(407,1): warning C4267: return: преобразование из "size_t" в "int"; возможна потеря данных
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_HashOpenShuffle\lib_HashOpenShuffle.h(138,7): warning C4101: i: неиспользованная локальная переменная
 D:\prog\Monom\Project1\Project1\MyForm.cpp(6,1): warning C4829: Возможно, неправильные параметры функции main. Рекомендуемый вариант - "int main(Platform::Array<Platform::String^>^ argv)"
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(115): warning C4172: возвращение адреса локальной или временной переменной : m
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(127): warning C4172: возвращение адреса локальной или временной переменной : m
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(138): warning C4172: возвращение адреса локальной или временной переменной : m
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(150): warning C4172: возвращение адреса локальной или временной переменной : m
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(343): warning C4172: возвращение адреса локальной или временной переменной : res
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(368): warning C4172: возвращение адреса локальной или временной переменной : res
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(379): warning C4172: возвращение адреса локальной или временной переменной : _res
+D:\prog\ThePolynomialXYZ\CmakePolinom\lib_polinom\lib_polinom.h(394): warning C4172: возвращение адреса локальной или временной переменной : _res
+D:\prog\Monom\Project1\Project1\Funks.h(88): warning C4715: find: значение возвращается не при всех путях выполнения
+D:\prog\Monom\Project1\Project1\Funks.h(143): warning C4715: plus: значение возвращается не при всех путях выполнения
+D:\prog\Monom\Project1\Project1\Funks.h(187): warning C4715: minus: значение возвращается не при всех путях выполнения
+D:\prog\Monom\Project1\Project1\Funks.h(231): warning C4715: multuply: значение возвращается не при всех путях выполнения
+D:\prog\Monom\Project1\Project1\Funks.h(275): warning C4715: multuplyOnNumber: значение возвращается не при всех путях выполнения
+D:\prog\Monom\Project1\Project1\Funks.h(313): warning C4715: Derivative: значение возвращается не при всех путях выполнения
+D:\prog\Monom\Project1\Project1\Funks.h(351): warning C4715: StrPrint: значение возвращается не при всех путях выполнения
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Project1.vcxproj -> D:\prog\Monom\Project1\x64\Debug\Project1.exe
