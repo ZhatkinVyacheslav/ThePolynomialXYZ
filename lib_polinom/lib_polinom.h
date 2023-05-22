@@ -342,6 +342,7 @@ public:
 
 		return res;
 	};
+
 	polinom& operator-(const polinom& right)
 	{
 		polinom rig = right;
@@ -427,6 +428,9 @@ public:
 		return res;
 	}
 
+	bool IsEmpty() {
+		return(Lmons.size() == 0);
+	}
 
 	~polinom() {
 		Lmons.clear();
