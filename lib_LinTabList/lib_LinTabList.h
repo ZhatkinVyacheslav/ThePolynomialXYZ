@@ -38,8 +38,7 @@ class LinTableList : public Table
 	Clist <DataLinTableList> LData;
 public:
 	LinTableList() {
-		polinom _pol;
-		add("", _pol);
+
 	}
 
 	LinTableList(std::string _name, polinom _pol)
@@ -49,9 +48,11 @@ public:
 
 	void add(std::string _name, polinom _pol) override
 	{
-		if (find(_name).CountMonoms() != 0) throw std::logic_error("Such a polinomial already exists");
-		DataLinTableList d1(_name, _pol);
-		LData.push_back(d1);
+		if (!find(_name).IsEmpty()) throw std::logic_error("Such a polinomial already exists");
+		else {
+			DataLinTableList d1(_name, _pol);
+			LData.push_back(d1);
+		}
 	}
 
 	void destroyPol(std::string DestroyName)override
@@ -66,8 +67,7 @@ public:
 			}
 		}
 	}
-	polinom find(std::string findName) override
-	{
+	polinom find(std::string findName) override	{
 		polinom EmptyPol;
 		if (LData.size() == 0) return EmptyPol;
 		for (int i = 0; i < LData.size(); i++)
@@ -101,7 +101,9 @@ public:
 	std::vector<std::pair<std::string, std::string>> print() {
 		std::vector<std::pair<std::string, std::string>> res;
 		for (int i = 0; i < LData.size(); i++) {
-			std::pair<std::string, std::string> newpair{ LData.GetIndEl(i).name,  LData.GetIndEl(i).pol.print_polinom() };
+			std::pair<std::string, std::string> newpair;
+			newpair.first = LData.GetIndEl(i).name;
+			newpair.second = LData.GetIndEl(i).pol.print_polinom();
 			res.push_back(newpair);
 		}
 		return res;
