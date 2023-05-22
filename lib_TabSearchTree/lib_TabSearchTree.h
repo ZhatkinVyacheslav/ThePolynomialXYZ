@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include <vector>
 #include "../lib_polinom/lib_polinom.h"
 #include "../lib_TableInterface/lib_TableInterface.h"
 
@@ -65,6 +66,7 @@ public:
 		Left = nullptr;
 		Right = nullptr;
 		Parent = nullptr;
+		datanum = 0;
 		imbalance = 0;
 	}
 
@@ -144,6 +146,7 @@ public:
 	}
 
 	Cnode* Find(std::string FindName) {
+		polinom EmptyPol;
 		if (root == nullptr) throw std::logic_error("Derevo pustoe");
 		Cnode* Copy = root;
 		bool flag = true;
@@ -247,10 +250,7 @@ public:
 			else Copy->Parent->imbalance += 1;
 			Copy = Copy->Parent;
 		}
-
 		ChekBalance();
-
-		
 	}
 
 	void findAndReplace(std::string FindName, polinom Newpol) {
