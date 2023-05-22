@@ -41,7 +41,7 @@ void add(std::string name, std::string strPolinom) {
 }
 
 void remove(std::string name) {
-	ltm.destroyPol(name);
+ 	ltm.destroyPol(name);
 	ltl.destroyPol(name);
 	otm.destroyPol(name);
 	hus.destroyPol(name);
@@ -103,37 +103,37 @@ std::string plus(std::string strPolinom1, std::string strPolinom2) {
 	{
 	case 0:
 	{
-		polinom sum = ltm.find(strPolinom1) + ltm.find(strPolinom1);
+		polinom sum = ltm.find(strPolinom1) + ltm.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 1:
 	{
-		polinom sum = ltl.find(strPolinom1) + ltl.find(strPolinom1);
+		polinom sum = ltl.find(strPolinom1) + ltl.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 2:
 	{
-		polinom sum = otm.find(strPolinom1) + otm.find(strPolinom1);
+		polinom sum = otm.find(strPolinom1) + otm.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 3:
 	{
-		polinom sum = hus.find(strPolinom1) + hus.find(strPolinom1);
+		polinom sum = hus.find(strPolinom1) + hus.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 4:
 	{
-		polinom sum = htl.find(strPolinom1) + htl.find(strPolinom1);
+		polinom sum = htl.find(strPolinom1) + htl.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 5:
 	{
-		polinom sum = tbs.find(strPolinom1) + tbs.find(strPolinom1);
+		polinom sum = tbs.find(strPolinom1) + tbs.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
@@ -147,37 +147,37 @@ std::string minus(std::string strPolinom1, std::string strPolinom2) {
 	{
 	case 0:
 	{
-		polinom sum = ltm.find(strPolinom1) - ltm.find(strPolinom1);
+		polinom sum = ltm.find(strPolinom1) - ltm.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 1:
 	{
-		polinom sum = ltl.find(strPolinom1) - ltl.find(strPolinom1);
+		polinom sum = ltl.find(strPolinom1) - ltl.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 2:
 	{
-		polinom sum = otm.find(strPolinom1) - otm.find(strPolinom1);
+		polinom sum = otm.find(strPolinom1) - otm.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 3:
 	{
-		polinom sum = hus.find(strPolinom1) - hus.find(strPolinom1);
+		polinom sum = hus.find(strPolinom1) - hus.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 4:
 	{
-		polinom sum = htl.find(strPolinom1) - htl.find(strPolinom1);
+		polinom sum = htl.find(strPolinom1) - htl.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 5:
 	{
-		polinom sum = tbs.find(strPolinom1) - tbs.find(strPolinom1);
+		polinom sum = tbs.find(strPolinom1) - tbs.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
@@ -191,37 +191,37 @@ std::string multuply(std::string strPolinom1, std::string strPolinom2) {
 	{
 	case 0:
 	{
-		polinom sum = ltm.find(strPolinom1) * ltm.find(strPolinom1);
+		polinom sum = ltm.find(strPolinom1) * ltm.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 1:
 	{
-		polinom sum = ltl.find(strPolinom1) * ltl.find(strPolinom1);
+		polinom sum = ltl.find(strPolinom1) * ltl.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 2:
 	{
-		polinom sum = otm.find(strPolinom1) * otm.find(strPolinom1);
+		polinom sum = otm.find(strPolinom1) * otm.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 3:
 	{
-		polinom sum = hus.find(strPolinom1) * hus.find(strPolinom1);
+		polinom sum = hus.find(strPolinom1) * hus.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 4:
 	{
-		polinom sum = htl.find(strPolinom1) * htl.find(strPolinom1);
+		polinom sum = htl.find(strPolinom1) * htl.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
 	case 5:
 	{
-		polinom sum = tbs.find(strPolinom1) * tbs.find(strPolinom1);
+		polinom sum = tbs.find(strPolinom1) * tbs.find(strPolinom2);
 		return sum.print_polinom();
 		break;
 	}
@@ -247,7 +247,7 @@ std::string multuplyOnNumber(std::string strPolinom1, int num) {
 	}
 	case 2:
 	{
-		polinom sum = otm.find(strPolinom1) * otm.find(strPolinom1);
+		polinom sum = otm.find(strPolinom1) * num;
 		return sum.print_polinom();
 		break;
 	}
