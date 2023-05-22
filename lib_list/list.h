@@ -59,6 +59,7 @@ public:
 	size_t size()
 	{
 		size_t len = 0;
+		if (head == nullptr) return 0;
 		CNode<Type>* head_copy = head;
 		while (head_copy != nullptr)
 		{
@@ -254,14 +255,6 @@ public:
 
 	Clist& operator=(const Clist& rig)
 	{
-		/*for (int i = 0; i < rig.size(); i++) {
-			if (i > this->size()) this->push_back(rig.GetIndEl(i));
-			else this->GetIndEl(i) = rig.GetIndEl(i);
-		}
-		if (rig.size() < this->size()) {
-			for (int i = rig.size(); i < this->size(); i++) this->pop_back();
-		}
-		return *this;*/
 
 		if (rig.head == nullptr) {
 			this->head = nullptr;
@@ -269,6 +262,14 @@ public:
 			return *this;
 		}
 		
+		this->head = nullptr;
+		this->tail = nullptr;
+		/*if (this->size() != 0) {
+			while (this->size() != 0)
+			{
+				this->pop_back();
+			}
+		}*/
 		CNode<Type>* rig_copy = rig.head;
 		while (rig_copy->get_next() != nullptr)
 		{
