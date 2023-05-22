@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "../lib_polinom/lib_polinom.h"
 #include "../lib_TableInterface/lib_TableInterface.h"
 
@@ -41,6 +42,7 @@ public:
 	}
 
 	void add(std::string name1, polinom pol1) override {
+		if (find(name1).CountMonoms() != 0) throw std::logic_error("Takoy polinom uzhe est'");
 		DataOrdTab newDate(name1, pol1);
 		bool flag = true;
 		if (size == 0)  dates[0] = newDate;
@@ -68,6 +70,7 @@ public:
 
 	void destroyPol(std::string DestroyName)override {
 		if (size == 0) throw std::logic_error("beda");
+		if (find(DestroyName).CountMonoms() == 0) throw std::logic_error("Polinoma s takim imenem net");
 		for(int i = 0; i < size; i++) {
 			if (dates[i].name == DestroyName) {
 				for (int j = i; j < size; j++) {
@@ -77,15 +80,15 @@ public:
 				return;
 			}
 		}
-		throw std::logic_error("Polinoma s takim imenem net");
 	}
 
 	polinom find(std::string findName) override {
-		if (size == 0) throw std::logic_error("Polinoma s takim imenem net");
+		polinom EmptyPol;
+		if (size == 0) return EmptyPol;
 		for (int i = 0; i < size; i++) {
 			if (findName == dates[i].name) return dates[i].pol;
 		}
-		throw std::logic_error("Polinoma s takim imenem net");
+		return EmptyPol;
 	}
 
 	void findAndReplace(std::string findName, polinom pol1) override {
@@ -101,16 +104,23 @@ public:
 	}
 
 	void massResize() {
-		DataOrdTab* newData = new DataOrdTab[maxsize];
 		maxsize += 3;
+		DataOrdTab* newData = new DataOrdTab[maxsize];
 		for (int i = 0; i < size; i++) {
 			newData[i] = dates[i];
 		}
 		delete[] dates;
 		dates = new DataOrdTab[maxsize];
+		dates = newData;
+	}
+
+	std::vector<std::pair<std::string, std::string>> print() {
+		std::vector<std::pair<std::string, std::string>> res;
 		for (int i = 0; i < size; i++) {
-			dates[i] = newData[i];
+			std::pair<std::string, std::string> newpair{ dates[i].name,  dates[i].pol.print_polinom() };
+			res.push_back(newpair);
 		}
+		return res;
 	}
 
 	~OrdTabMass() {
