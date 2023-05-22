@@ -2,7 +2,7 @@
 #include "../lib_polinom/lib_polinom.h"
 #include "../lib_list/list.h"
 #include "../lib_TableInterface/lib_TableInterface.h"
-
+#include <vector>
 class DataLinTableList
 {
 private:
@@ -10,6 +10,10 @@ private:
 	polinom pol;
 
 public:
+	DataLinTableList() {
+		name = "";
+	}
+
 	DataLinTableList(std::string _name, polinom _pol) {
 		name = _name;
 		pol = _pol;
@@ -18,6 +22,8 @@ public:
 	DataLinTableList& operator= (const DataLinTableList& right) {
 		this->name = right.name;
 		this->pol = right.pol;
+
+		return *this;
 	}
 
 	std::string getName() { return name; }
@@ -43,12 +49,15 @@ public:
 
 	void add(std::string _name, polinom _pol) override
 	{
+		if (find(_name).CountMonoms() != 0) throw std::logic_error("Such a polinomial already exists");
 		DataLinTableList d1(_name, _pol);
 		LData.push_back(d1);
 	}
 
 	void destroyPol(std::string DestroyName)override
 	{
+		if (LData.size() == 0) throw std::logic_error("Mass is empty");
+		if (find(DestroyName).CountMonoms() == 0) throw std::logic_error("There is no such name");
 		for (int i = 0; i < LData.size(); i++)
 		{
 			if (LData.GetIndEl(i).name == DestroyName)
@@ -59,6 +68,8 @@ public:
 	}
 	polinom find(std::string findName) override
 	{
+		polinom EmptyPol;
+		if (LData.size() == 0) return EmptyPol;
 		for (int i = 0; i < LData.size(); i++)
 		{
 			if (LData.GetIndEl(i).name == findName)
@@ -66,7 +77,7 @@ public:
 				return LData.GetIndEl(i).pol;
 			}
 		};
-		throw std::logic_error("Error! Net polinoma s takim imenem");
+		return EmptyPol;
 	}
 
 	void findAndReplace(std::string findName, polinom _pol) override
@@ -87,8 +98,14 @@ public:
 	~LinTableList() {
 	}
 
-private:
-
+	std::vector<std::pair<std::string, std::string>> print() {
+		std::vector<std::pair<std::string, std::string>> res;
+		for (int i = 0; i < LData.size(); i++) {
+			std::pair<std::string, std::string> newpair{ LData.GetIndEl(i).name,  LData.GetIndEl(i).pol.print_polinom() };
+			res.push_back(newpair);
+		}
+		return res;
+	}
 };
 
 

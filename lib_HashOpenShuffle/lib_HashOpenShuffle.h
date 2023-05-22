@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 #include "../lib_polinom/lib_polinom.h"
 #include "../lib_TableInterface/lib_TableInterface.h"
 
@@ -53,6 +54,7 @@ public:
 
 	void add(std::string name1, polinom _pol) override
 	{
+		if (find(name1).CountMonoms() != 0) throw std::logic_error("Such a polinomial already exists");
 		if(isFull()) throw std::logic_error("Mass is full");
 		if (p1[hashfunk(name1)].first != NULL)
 		{
@@ -73,10 +75,12 @@ public:
 			p1[hashfunk(name1)].second.pol = _pol;
 		}
 
-	};
+	}
+
 	void destroyPol(std::string DestroyName)override
 	{
 		if (isEmpty()) throw std::logic_error("Mass is empty");
+		if (find(DestroyName).CountMonoms() == 0) throw std::logic_error("There is no such name");
 		int b = hashfunk(DestroyName);
 		for (int i = 0; i < 26; i++) {
 			if (p1[b].second.name == DestroyName)
@@ -90,11 +94,12 @@ public:
 				b = (b + 7) % 25;
 			}
 		}
-		throw std::logic_error("There is no such name");
-	};
+	}
+
 	polinom find(std::string findName) override
 	{
-		if (isEmpty())  throw std::logic_error("Mass is empty");
+		polinom EmptyPol;
+		if (isEmpty())  return EmptyPol;
 		int b = hashfunk(findName);
 
 		for (int i = 0; i < 26; i++)
@@ -107,8 +112,9 @@ public:
 				return p1[b].second.pol;
 			}
 		}
-		throw std::logic_error("There is no such name");
-	};
+		return EmptyPol;
+	}
+
 	void findAndReplace(std::string findName, polinom _pol) override
 	{
 		if(isEmpty())  throw std::logic_error("Mass is empty");
@@ -126,7 +132,7 @@ public:
 			}
 		}
 		throw std::logic_error("There is no such name");
-	};
+	}
 
 	bool isEmpty() {
 		int i;
@@ -147,9 +153,21 @@ public:
 		return true;
 	}
 
+	std::vector<std::pair<std::string, std::string>> print() {
+		std::vector<std::pair<std::string, std::string>> res;
+		for (int i = 0; i < 25; i++) {
+			if (p1[i].first != NULL)
+			{
+				std::pair<std::string, std::string> newpair{ p1[i].second.name,  p1[i].second.pol.print_polinom()};
+				res.push_back(newpair);
+			}
+		}
+		return res;
+	}
+
 	~HashOpenShuffle()
 	{
 		delete[] p1;
-	};
+	}
 
 };
